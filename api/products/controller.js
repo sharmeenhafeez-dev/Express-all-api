@@ -145,13 +145,13 @@ const Productbyname = async (req, res) => {
 
   const deleteProduct = async (req,res)=>{
 
-    const {title} = req.body
+    const {_id} = req.body
     try {
       await connect(process.env.MONGODB_URL)
-      const result = await Product.deleteOne({ title: title })
+      const result = await Product.deleteOne({ _id })
       if (result.deletedCount > 0) {
           res.status(200).json({
-              message: "Product deleted successfully"
+              message: "Product deleted successfully",result
           });
       } else {
           res.status(404).json({
